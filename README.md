@@ -67,10 +67,10 @@ The extension supports the following functions:
 
 Function | Description
 --- | ---
-call | Makes stacked API request using php curl.
-get | Retrives individual API response by method _alias_ defined for each request method.
-trans | Translates custom phrases defined at _index.php_.
-flag | Maps the language code to a country code (_defined at locale.json_).
+call('json') | Makes stacked API request using php curl.
+get('alias') | Retrives individual API response by method _alias_ defined for each request method.
+trans('phrase') | Translates custom phrases defined at _index.php_.
+flag('lang') | Maps the language code to a country code (_defined at locale.json_).
 
 The extension supports the following filters:
 
