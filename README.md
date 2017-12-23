@@ -2,6 +2,8 @@
 
 This is a free extension introduces our example implementation on top of Twig template engine, for more control over our API Response (_conditional statements, loops, and custom functionality_).
 
+> You need a Developer Account to obtain your App API Keys, if you don't have an account, [request](https://account.oggeh.com/request) one now.
+
 ## Getting Started
 
 1. First, you need to install Twig
