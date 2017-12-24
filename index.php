@@ -52,9 +52,6 @@
 			}
 		}
 	}
-	if ($url_module == 'index' || $url_module == '') {
-		$url_module = 'home';
-	}
 
 	/**
 	 * Configure Developer Access
@@ -187,8 +184,10 @@
 	/**
 	 * Render App
 	 */
-	if (!is_file('tpl/'.$url_module.'.html')) {
+	if ($url_module != '' && !is_file('tpl/'.$url_module.'.html') || strlen($url_lang) != 2) {
 		$url_module = '404';
+	} elseif ($url_module == 'index' || $url_module == '') {
+		$url_module = 'home';
 	}
 	echo $twig->render($url_module.'.html', array(
 		'uri'=>$uri,
