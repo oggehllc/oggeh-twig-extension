@@ -125,7 +125,7 @@
 		),
 		'your-name'=>array(
 			'en'=>'Your Name',
-			'ar'=>'السم'
+			'ar'=>'الاسم'
 		),
 		'email-address'=>array(
 			'en'=>'Email',
