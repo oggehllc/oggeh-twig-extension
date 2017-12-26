@@ -30,7 +30,7 @@
 		static $sandbox = false;
 		static $domain = '';
 		static $api_key = '';
-		static $api_secret = '';
+		static $sandbox_key = '';
 		static $lang = 'en';
 		static $i18n = array();
 		static $locale = array();
@@ -100,7 +100,7 @@
 			$sandbox = self::$sandbox;
 			$domain = self::$domain;
 			$api_key = self::$api_key;
-			$api_secret = self::$api_secret;
+			$sandbox_key = self::$sandbox_key;
 			$lang = self::$lang;
 			$inactive = self::$inactive;
 			if (!isset($api_key) || empty($api_key)) {
@@ -148,7 +148,7 @@
 			    	'Content-Length: '.strlen($body)
 			    );
 			    if ($sandbox) {
-			    	$headers[] = 'SandBox: '.hash_hmac('sha512', $domain.$api_key, $api_secret);
+			    	$headers[] = 'SandBox: '.hash_hmac('sha512', $domain.$api_key, $sandbox_key);
 			    }
 			    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
