@@ -60,7 +60,7 @@
 	OGGEH::configure('api_key', '57ff136718d176aae148c8ce9aaf6817');
 	OGGEH::configure('lang', $url_lang);
 	// Enable development environment
-	OGGEH::configure('api_secret', 'ca58365e824a4135a3c537b8f362a863');
+	OGGEH::configure('sandbox_key', '39e55bb297b9943cfdab5d77cbf4f374');
 	OGGEH::configure('sandbox', true);
 	OGGEH::configure('i18n', array(
 		'home'=>array(

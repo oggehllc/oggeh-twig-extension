@@ -61,13 +61,13 @@ forms.submit = function(e) {
         try {
         		var domain = 'domain.ltd';
         		var api_key = '57ff136718d176aae148c8ce9aaf6817';
-        		var api_secret = 'ca58365e824a4135a3c537b8f362a863';
-        		var hash = CryptoJS.HmacSHA512(domain+api_key, api_secret); // CryptoJS: http://code.google.com/p/crypto-js/
+        		var sandbox_key = '39e55bb297b9943cfdab5d77cbf4f374';
+        		var hash = CryptoJS.HmacSHA512(domain+api_key, sandbox_key); // CryptoJS: http://code.google.com/p/crypto-js/
             $.ajax({
                 url: thisForm.attr('action'),
                 method: 'POST',
                 headers: {
-                	'SandBox': CryptoJS.HmacSHA512(domain+api_key, api_secret).toString() // IMPORTANT: You should not use Sandbox headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
+                	'SandBox': CryptoJS.HmacSHA512(domain+api_key, sandbox_key).toString() // IMPORTANT: You should not use Sandbox headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
                 },
                 data: thisForm.serialize(),
                 complete: function(xhr){

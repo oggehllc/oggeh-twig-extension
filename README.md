@@ -15,9 +15,9 @@ composer require twig/twig:~2.0
 OGGEH::configure('domain', 'domain.ltd');
 OGGEH::configure('api_key', '[APP_API_KEY]');
 ```
-3. For local environment, you need to enter your App API Secret as well in `index.php`, and set _sandbox_ setting to `true`
+3. For local environment, you need to enter your App Sandbox Key as well in `index.php`, and set _sandbox_ setting to `true`
 ```php
-OGGEH::configure('api_secret', '[APP_API_SECRET]');
+OGGEH::configure('sandbox_key', '[APP_SANDBOX_KEY]');
 OGGEH::configure('sandbox', true);
 ```
 4. Optionally, you can configure your own Frontend dictionary for translating page custom model attributes as follows:
