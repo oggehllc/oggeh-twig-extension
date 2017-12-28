@@ -41,7 +41,7 @@ OGGEH::configure('i18n', array(
 
 ## IMPORTANT
 
-You should not use Sandbox headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
+You will not be charged for your apps in development mode. Please do *not* use _Sandbox_ headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
 If you're planning to use this example, remove the `SandBox` header from JavaScript (_assets/js/main.js @line 70_)
 
 ## How it Works
