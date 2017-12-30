@@ -1020,7 +1020,7 @@ var carousel = (function($) { var _ = {
 			e.preventDefault();
 			// use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess)
 			//location.replace('/'+$('html').attr('lang')+'/search/'+$('input[name="keyword"]').val());
-			location.replace('/?lang='+$('html').attr('lang')+'&module=search&param1='+$('input[name="keyword"]').val());
+			location.replace('?lang='+$('html').attr('lang')+'&module=search&param1='+$('input[name="keyword"]').val());
 		});
 		// handling datepicker
 		$('.datepicker').datepicker({format:'yyyy-mm-dd',autoHide:true});

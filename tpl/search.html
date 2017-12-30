@@ -32,7 +32,7 @@
                                                         <h2>
                                                             {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
                                                             {#<a href="/{{ lang }}/page/{{ item.key }}">{{ item.subject }}</a>#}
-                                                            <a href="/?lang={{ lang }}&module=page&param1={{ item.key }}">{{ item.subject }}</a>
+                                                            <a href="?lang={{ lang }}&module=page&param1={{ item.key }}">{{ item.subject }}</a>
                                                         </h2>
                                                         <p>{{ item.header }}</p>
                                                     </article>
@@ -44,7 +44,7 @@
                                                         <h2>
                                                             {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
                                                             {#<a href="/{{ lang }}/news/{{ item.timestamp }}">{{ item.subject }}</a>#}
-                                                            <a href="/?lang={{ lang }}&module=news&param1={{ item.timestamp }}">{{ item.subject }}</a>
+                                                            <a href="?lang={{ lang }}&module=news&param1={{ item.timestamp }}">{{ item.subject }}</a>
                                                         </h2>
                                                         <p>{{ item.header }}</p>
                                                     </article>

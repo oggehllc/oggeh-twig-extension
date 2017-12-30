@@ -9,7 +9,7 @@
         <li class="{% if child_id == child.key %}active{% endif %}">
             {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
             {#<a href="/{{ lang }}/page/{{ child.key }}">{{ child.subject|raw }}</a>#}
-            <a href="/?lang={{ lang }}&module=page&param1={{ child.key }}">{{ child.subject|raw }}</a>
+            <a href="?lang={{ lang }}&module=page&param1={{ child.key }}">{{ child.subject|raw }}</a>
         </li>
         {% endif %}
     	{% endfor %}
