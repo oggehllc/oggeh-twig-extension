@@ -35,7 +35,28 @@
 	$url_extra_id = '';
 	$uri = $_SERVER['REQUEST_URI'];
 	$pieces = parse_url($uri);
-	$path = trim($pieces['path'], '/');
+	if (isset($pieces['query'])) {
+		parse_str($pieces['query'], $query);
+		if (isset($query['lang'])) {
+			$url_lang = $query['lang'];
+			$direction = (in_array($url_lang, $rtl_langs)) ? 'rtl' : 'ltr';
+		}
+		if (isset($query['module'])) {
+			$url_module = $query['module'];
+		}
+		if (isset($query['param1'])) {
+			$url_child_id = $query['param1'];
+		}
+		if (isset($query['param2'])) {
+			$url_extra_id = $query['param2'];
+		}
+	}
+	/**
+	 * Configure rewrite settings
+	 * remember to modify all URLs in your template files (including javascript if necessary)
+	 */
+	// uncomment the following to enable rewrite settings (rename htaccess.txt to .htaccess)
+	/*$path = trim($pieces['path'], '/');
 	$segments = explode('/', $path);
 	if (count($segments)>0) {
 		if (strlen($segments[0])>0) {
@@ -51,7 +72,7 @@
 				}
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * Configure Developer Access

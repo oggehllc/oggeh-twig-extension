@@ -1,3 +1,4 @@
+# Remember to uncomment rewrite settings at `index.php` before activating this file, in addition to all URLs in your template files (including javascript if necessary)
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
