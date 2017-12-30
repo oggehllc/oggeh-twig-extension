@@ -7,7 +7,9 @@
           {% include 'navitem.html' with {'lang': lang, 'child_id': child_id, 'subject': child.subject, 'childs': child.childs} %}
         {% else %}
         <li class="{% if child_id == child.key %}active{% endif %}">
-            <a href="/{{ lang }}/page/{{ child.key }}">{{ child.subject|raw }}</a>
+            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+            {#<a href="/{{ lang }}/page/{{ child.key }}">{{ child.subject|raw }}</a>#}
+            <a href="/?lang={{ lang }}&module=page&param1={{ child.key }}">{{ child.subject|raw }}</a>
         </li>
         {% endif %}
     	{% endfor %}

@@ -20,7 +20,9 @@
                                     <h1>404</h1>
                                     <blockquote>
                                       <p>{{ trans('page-not-found') }}</p>
-                                      <a href="/{{ lang }}">{{ trans('back-to-home') }}</a>
+                                      {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                      {#<a href="/{{ lang }}">{{ trans('back-to-home') }}</a>#}
+                                      <a href="/?lang={{ lang }}">{{ trans('back-to-home') }}</a>
                                     </blockquote>
                                 </header>
                             </section>

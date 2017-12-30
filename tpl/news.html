@@ -212,11 +212,15 @@
                                 {% for item in news %}
                                   <article class="6u 12u$(small)">
                                       <h3>
-                                          <a href="/{{ lang }}/news/{{ item.timestamp }}">{{ item.subject }}</a>
+                                          {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                          {#<a href="/{{ lang }}/news/{{ item.timestamp }}">{{ item.subject }}</a>#}
+                                          <a href="/?lang={{ lang }}&module=news&param1={{ item.timestamp }}">{{ item.subject }}</a>
                                       </h3>
                                       <blockquote>{{ item.date }}</blockquote>
                                       <p>{{ item.header }}</p>
-                                      <a href="/{{ lang }}/news/{{ item.timestamp }}" class="button">{{ trans('continue-reading') }} &raquo;</a>
+                                      {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                      {#<a href="/{{ lang }}/news/{{ item.timestamp }}" class="button">{{ trans('continue-reading') }} &raquo;</a>#}
+                                      <a href="/?lang={{ lang }}&module=news&param1={{ item.timestamp }}" class="button">{{ trans('continue-reading') }} &raquo;</a>
                                   </article>
                                 {% endfor %}
                                 <!-- end of :: all news subject and header -->

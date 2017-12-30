@@ -47,7 +47,9 @@
 
                     <!-- Header -->
                         <header id="header">
-                            <a href="/{{ lang }}" class="logo">
+                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                            {#<a href="/{{ lang }}" class="logo">#}
+                            <a href="/?lang={{ lang }}" class="logo">
                                 <!-- begin of :: app title -->
                                 {{ app.title }}
                                 <!-- end of :: app title -->
@@ -85,7 +87,9 @@
                                     <ul>
                                         <!-- begin of :: app navigation -->
                                         <li class="{% if module == 'home' %}active{% endif %}">
-                                            <a href="/{{ lang }}/" class="{% if module == 'home' %}active{% endif %}">{{ trans('home') }}</a>
+                                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                            {#<a href="/{{ lang }}/" class="{% if module == 'home' %}active{% endif %}">{{ trans('home') }}</a>#}
+                                            <a href="/?lang={{ lang }}" class="{% if module == 'home' %}active{% endif %}">{{ trans('home') }}</a>
                                         </li>
                                         {% set nav = get('nav') %}
                                         {% if nav|length > 0 %}
@@ -94,19 +98,27 @@
                                                     {% include 'navitem.html' with {'lang': lang, 'child_id': child_id, 'subject': item.subject, 'childs': item.childs} %}
                                                 {% else %}
                                             <li class="{% if child_id == item.key %}active{% endif %}">
-                                                <a href="/{{ lang }}/page/{{ item.key }}">{{ item.subject|raw }}</a>
+                                                {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                                {#<a href="/{{ lang }}/page/{{ item.key }}">{{ item.subject|raw }}</a>#}
+                                                <a href="/?lang={{ lang }}&module=page&param1={{ item.key }}">{{ item.subject|raw }}</a>
                                             </li>
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                         <li class="{% if module == 'album' %}active{% endif %}">
-                                            <a href="/{{ lang }}/album" class="{% if module == 'album' %}active{% endif %}">{{ trans('album') }}</a>
+                                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                            {#<a href="/{{ lang }}/album" class="{% if module == 'album' %}active{% endif %}">{{ trans('album') }}</a>#}
+                                            <a href="/?lang={{ lang }}&module=album" class="{% if module == 'album' %}active{% endif %}">{{ trans('album') }}</a>
                                         </li>
                                         <li class="{% if module == 'news' %}active{% endif %}">
-                                            <a href="/{{ lang }}/news" class="{% if module == 'news' %}active{% endif %}">{{ trans('all-news') }}</a>
+                                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                            {#<a href="/{{ lang }}/news" class="{% if module == 'news' %}active{% endif %}">{{ trans('all-news') }}</a>#}
+                                            <a href="/?lang={{ lang }}&module=news" class="{% if module == 'news' %}active{% endif %}">{{ trans('all-news') }}</a>
                                         </li>
                                         <li class="{% if module == 'contact' %}active{% endif %}">
-                                            <a href="/{{ lang }}/contact" class="{% if module == 'contact' %}active{% endif %}">{{ trans('contact-us') }}</a>
+                                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                            {#<a href="/{{ lang }}/contact" class="{% if module == 'contact' %}active{% endif %}">{{ trans('contact-us') }}</a>#}
+                                            <a href="/?lang={{ lang }}&module=contact" class="{% if module == 'contact' %}active{% endif %}">{{ trans('contact-us') }}</a>
                                         </li>
                                         <!-- end of :: app navigation -->
                                     </ul>
@@ -121,7 +133,11 @@
                                     </header>
                                     <p>{{ quote.header }}</p>
                                     <ul class="actions">
-                                        <li><a href="/{{ lang }}/page/{{ quote.key }}" class="button special">{{ trans('submit') }}</a></li>
+                                        <li>
+                                            {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                            {#<a href="/{{ lang }}/page/{{ quote.key }}" class="button special">{{ trans('submit') }}</a>#}
+                                            <a href="/?lang={{ lang }}&module=page&param1={{ quote.key }}" class="button special">{{ trans('submit') }}</a>
+                                        </li>
                                     </ul>
                                     <!-- end of :: page subject,header for page key `request-a-quote`  -->
                                 </section>
@@ -162,10 +178,15 @@
                                             {% if ln not in unique %}
                                                 {% set unique = unique|merge([ln]) %}
                                                 <p class="lang">
-                                                    {% set key = '/' ~ lang ~ '/' %}
+                                                    {# use the following instead to enable rewrite settings (rename htaccess.txt to .htaccess) #}
+                                                    {#% set key = '/' ~ lang ~ '/' %}
                                                     {% set val = '/' ~ ln ~ '/' %}
                                                     {% set url = uri|replace({(key): (val)}) %}
-                                                    {% set url = (url != '/') ? url : '/' ~ ln %}
+                                                    {% set url = (url != '/') ? url : '/' ~ ln %#}
+                                                    {% set key = '/?lang=' ~ lang %}
+                                                    {% set val = '/?lang=' ~ ln %}
+                                                    {% set url = uri|replace({(key): (val)}) %}
+                                                    {% set url = (url != '/') ? url : '/?lang=' ~ ln %}
                                                     <a href="{{ url }}">
                                                         {% set fl = flag(ln) %}
                                                         <span class="flag-icon flag-icon-{{ fl }}"></span>
@@ -197,7 +218,7 @@
         <script src="/assets/js/skel.min.js"></script>
         <script src="/assets/js/util.js?v=0.1"></script>
         <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
-        <script src="/assets/js/main.js?v=3.0"></script>
+        <script src="/assets/js/main.js?v=3.1"></script>
 
     </body>
 </html>
