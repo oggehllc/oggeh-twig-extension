@@ -1,3 +1,9 @@
+{# Used to disable css/js cache in debug mode (simply append `?v={{ uid }}` to css/js files) #}
+{% set uid = 1 %}
+{% if debug %}
+	{% set uid = random() %}
+{% endif %}
+
 {# Global API methods, mostly reused in header and footer blocks #}
 {% set data = [
     {

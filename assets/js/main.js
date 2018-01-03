@@ -1041,10 +1041,15 @@ var carousel = (function($) { var _ = {
 	    $('.map-container .location').remove();
 
 	    var bounds = new google.maps.LatLngBounds();
-	    var map = new google.maps.Map($('.map-container').get(0), {
-	      mapTypeId: google.maps.MapTypeId.ROADMAP,
-	      styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#c8c8c8"}]}]
-	    });
+	    var opts = {
+		    mapTypeId: google.maps.MapTypeId.ROADMAP,
+		    styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#c8c8c8"}]}]
+		  };
+		  if (locations.length == 1) {
+		  	opts.zoom = 17;
+		  	opts.center = new google.maps.LatLng(locations[0][1], locations[0][2]);
+		  }
+	    var map = new google.maps.Map($('.map-container').get(0), opts);
 
 	    var infowindow = new google.maps.InfoWindow();
 
@@ -1064,7 +1069,9 @@ var carousel = (function($) { var _ = {
 	        }
 	      })(marker, i));
 	    }
-	    map.fitBounds(bounds);
+	    if (locations.length > 1) {
+		  	map.fitBounds(bounds);
+		  }
 		}
 
 		// main template activities

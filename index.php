@@ -10,8 +10,9 @@
 	require_once 'vendor/autoload.php';
 	//Twig_Autoloader::register(); // uncomment for php 5.3
 	$loader = new Twig_Loader_Filesystem('tpl');
+	$debug = true; // set to true for debug
 	$twig = new Twig_Environment($loader, array(
-		//'debug' => true, // uncomment for debug
+		'debug' => $debug,
 		//'cache' => 'tmp'
 		'cache' => false
 	));
@@ -80,9 +81,11 @@
 	OGGEH::configure('domain', 'domain.ltd');
 	OGGEH::configure('api_key', '57ff136718d176aae148c8ce9aaf6817');
 	OGGEH::configure('lang', $url_lang);
-	// Enable development environment
-	OGGEH::configure('sandbox_key', '39e55bb297b9943cfdab5d77cbf4f374');
-	OGGEH::configure('sandbox', true);
+	if ($debug) {
+		// Enable development environment
+		OGGEH::configure('sandbox_key', '39e55bb297b9943cfdab5d77cbf4f374');
+		OGGEH::configure('sandbox', true);
+	}
 	OGGEH::configure('i18n', array(
 		'home'=>array(
 			'en'=>'Home',
@@ -211,6 +214,7 @@
 		$url_module = 'home';
 	}
 	echo $twig->render($url_module.'.html', array(
+		'debug'=>$debug,
 		'uri'=>$uri,
 		'lang'=>$url_lang,
 		'dir'=>$direction,
