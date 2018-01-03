@@ -1,7 +1,7 @@
 <?php
 	/*
 	 * OGGEH Twig Extension
-	 * @version 0.1
+	 * @version 0.2
 	 * 
 	 * Author: Ahmed Abbas - OGGEH Cloud Computing LLC - oggeh.com
 	 * License: GNU-GPL v3 (http://www.gnu.org/licenses/gpl.html)
@@ -27,6 +27,7 @@
 	 *
 	 */
 	class OGGEH {
+		static $rewrite = false;
 		static $sandbox = false;
 		static $domain = '';
 		static $api_key = '';
@@ -169,12 +170,19 @@
 			    	$res = json_decode($res, true);
 				    if ($res) {
 				    	if ($res['error'] != '') {
-				    		if ($res['error'] != 'app not published') {
+				    		if ($res['error'] != 'app not published' && $res['error'] != 'account suspended') {
 				    			error_log('api error: '. $res['error']);
 				    		} else {
-				    			if ($_SERVER['REQUEST_URI'] != '/'.$lang.'/'.$inactive) {
-				    				header('Location: /'.$lang.'/'.$inactive);
-				    				exit;
+				    			if (self::$rewrite) {
+				    				if ($_SERVER['REQUEST_URI'] != '/'.$lang.'/'.$inactive) {
+					    				header('Location: /'.$lang.'/'.$inactive);
+					    				exit;
+					    			}
+				    			} else {
+				    				if (!isset($_REQUEST['module']) || $_REQUEST['module'] != $inactive) {
+					    				header('Location: /?lang='.$lang.'&module='.$inactive);
+					    				exit;
+					    			}
 				    			}
 				    		}
 					    } else {

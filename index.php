@@ -81,6 +81,7 @@
 	OGGEH::configure('domain', 'domain.ltd');
 	OGGEH::configure('api_key', '57ff136718d176aae148c8ce9aaf6817');
 	OGGEH::configure('lang', $url_lang);
+	//OGGEH::configure('rewrite', true); // uncomment to enable rewrite settings (rename htaccess.txt to .htaccess)
 	if ($debug) {
 		// Enable development environment
 		OGGEH::configure('sandbox_key', '39e55bb297b9943cfdab5d77cbf4f374');
