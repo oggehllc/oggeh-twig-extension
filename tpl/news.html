@@ -135,7 +135,7 @@
                                             <article class="12u$">
                                               <label for="{{ field.name }}">{{ field.label }}</label>
                                               <div class="select-wrapper">
-                                                <select{% if field.required %} class="validate-required" required{% endif %}{% if field.multiple %} multiple{% endif %}>
+                                                <select name="{{ field.name }}"{% if field.required %} class="validate-required" required{% endif %}{% if field.multiple %} multiple{% endif %}>
                                                   {% for option in field.options %}
                                                   <option value="{{ option.value }}">{{ option.label }}</option>
                                                   {% endfor %}
