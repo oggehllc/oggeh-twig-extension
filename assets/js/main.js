@@ -63,51 +63,54 @@ forms.submit = function(e) {
         		var api_key = '57ff136718d176aae148c8ce9aaf6817';
         		var sandbox_key = '39e55bb297b9943cfdab5d77cbf4f374';
         		var hash = CryptoJS.HmacSHA512(domain+api_key, sandbox_key); // CryptoJS: http://code.google.com/p/crypto-js/
-            var contentType = 'application/x-www-form-urlencoded';
-            var data = null;
-            function extractFilename(path) {
-						  if (path.substr(0, 12) == "C:\\fakepath\\")
-						    return path.substr(12); // modern browser
-						  var x;
-						  x = path.lastIndexOf('/');
-						  if (x >= 0) // Unix-based path
-						    return path.substr(x+1);
-						  x = path.lastIndexOf('\\');
-						  if (x >= 0) // Windows-based path
-						    return path.substr(x+1);
-						  return path; // just the file name
+						var contentType = 'application/x-www-form-urlencoded';
+						var data = null;
+						function extractFilename(path) {
+							if (path.substr(0, 12) == "C:\\fakepath\\") {
+								return path.substr(12); // modern browser
+							}
+							var x;
+							x = path.lastIndexOf('/');
+							if (x >= 0) { // Unix-based path
+								return path.substr(x+1);
+							}
+							x = path.lastIndexOf('\\');
+							if (x >= 0) { // Windows-based path
+								return path.substr(x+1);
+							}
+							return path; // just the file name
 						}
 						if (thisForm.find('input[type=file]').length > 0) {
 							// build form data for file uploads
 							data = new FormData();
 							thisForm.find('input').each(function() {
-	            	if ($(this).attr('name')) {
-	            		if ($(this).get(0).files) {
-	            			$(this).get(0).textContent = extractFilename($(this).val()); // replace local fakepath, see: https://www.w3.org/TR/html5/sec-forms.html#file-upload-state-typefile
+								if ($(this).attr('name')) {
+									if ($(this).get(0).files) {
+										$(this).get(0).textContent = extractFilename($(this).val()); // replace local fakepath, see: https://www.w3.org/TR/html5/sec-forms.html#file-upload-state-typefile
 										data.append($(this).attr('name'), $(this).get(0).files[0]);
 									} else if ($(this).attr('type') == 'checkbox') {
 										data.append($(this).attr('name'), (($(this).is(':checked')) ? 'on' : ''));
 									} else {
 										data.append($(this).attr('name'), $(this).val());
 									}
-	            	}
+								}
 							});
 							if (!$.isEmptyObject(data)) {
-								contentType = false;
+							contentType = false;
 							}
 						} else {
 							// build form data if no file uploads
 							data = thisForm.serialize();
 						}
             $.ajax({
-                url: thisForm.attr('action'),
-                method: 'POST',
-                headers: {
-                	'SandBox': CryptoJS.HmacSHA512(domain+api_key, sandbox_key).toString() // IMPORTANT: You should not use Sandbox headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
-                },
-                data: data,
-                contentType: contentType,
-                cache: false,
+								url: thisForm.attr('action'),
+								method: 'POST',
+								headers: {
+									'SandBox': CryptoJS.HmacSHA512(domain+api_key, sandbox_key).toString() // IMPORTANT: You should not use Sandbox headers in production mode to avoid blocking your App along with your Developer Account for violating our terms and conditions!
+								},
+								data: data,
+								contentType: contentType,
+								cache: false,
 								processData: false,
                 complete: function(xhr){
                     // Request was a success, what was the response?
