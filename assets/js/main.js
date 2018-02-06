@@ -96,7 +96,7 @@ forms.submit = function(e) {
 								}
 							});
 							if (!$.isEmptyObject(data)) {
-							contentType = false;
+								contentType = false;
 							}
 						} else {
 							// build form data if no file uploads
