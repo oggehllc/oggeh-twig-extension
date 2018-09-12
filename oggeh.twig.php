@@ -1,7 +1,7 @@
 <?php
 	/*
 	 * OGGEH Twig Extension
-	 * @version 0.2
+	 * @version 0.3
 	 * 
 	 * Author: Ahmed Abbas - OGGEH Cloud Computing LLC - oggeh.com
 	 * License: GNU-GPL v3 (http://www.gnu.org/licenses/gpl.html)
@@ -169,29 +169,40 @@
 			    	curl_close($ch);
 			    	$res = json_decode($res, true);
 				    if ($res) {
-				    	if ($res['error'] != '') {
-				    		if ($res['error'] != 'app not published' && $res['error'] != 'account suspended') {
-				    			error_log('api error: '. $res['error']);
-				    		} else {
-				    			if (self::$rewrite) {
-				    				if ($_SERVER['REQUEST_URI'] != '/'.$lang.'/'.$inactive) {
-					    				header('Location: /'.$lang.'/'.$inactive);
-					    				exit;
-					    			}
-				    			} else {
-				    				if (!isset($_REQUEST['module']) || $_REQUEST['module'] != $inactive) {
-					    				header('Location: /?lang='.$lang.'&module='.$inactive);
-					    				exit;
-					    			}
-				    			}
-				    		}
-					    } else {
-					    	$res = $res['stack'];
-					    	$this->stack = $res;
-					    }
-				    } else {
-				    	error_log('response error: '. $res);
-				    }
+              if ($res['error'] != '') {
+                if ($res['error'] != 'app not published' && $res['error'] != 'account suspended') {
+                  error_log('api error: '. $res['error']);
+                } else {
+                  if (self::$rewrite) {
+                    if ($_SERVER['REQUEST_URI'] != '/'.$lang.'/'.$inactive) {
+                      header('Location: /'.$lang.'/'.$inactive);
+                      exit;
+                    }
+                  } else {
+                    if (!isset($_REQUEST['module']) || $_REQUEST['module'] != $inactive) {
+                      header('Location: /?lang='.$lang.'&module='.$inactive);
+                      exit;
+                    }
+                  }
+                }
+              } else {
+                if (self::$rewrite) {
+                  if ($_SERVER['REQUEST_URI'] == '/'.$lang.'/'.$inactive) {
+                    header('Location: /'.$lang);
+                    exit;
+                  }
+                } else {
+                  if (isset($_REQUEST['module']) && $_REQUEST['module'] == $inactive) {
+                    header('Location: /?lang='.$lang);
+                    exit;
+                  }
+                }
+                $res = $res['stack'];
+                $this->stack = $res;
+              }
+            } else {
+              error_log('response error: '. $res);
+            }
 			    }
 		    } catch (Exception $e) {
 		    	error_log('request error: '. $e->getMessage());
